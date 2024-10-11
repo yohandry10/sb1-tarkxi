@@ -1,91 +1,143 @@
-import React, { useState, useEffect } from 'react'
-import { Menu, X, Search, User, Home, Building, Phone, Info } from 'lucide-react'
+// src/components/Header.tsx
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Search, User } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useProperties } from '../context/PropertiesContext';
 
 interface HeaderProps {
-  toggleMenu: () => void
-  setCurrentPage: (page: string) => void
+  toggleMenu?: () => void;
+  setCurrentPage?: (page: string) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const { searchProperties, filteredProperties, navigateToProperty } = useProperties();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMenuOpen]);
 
   const handleToggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-    toggleMenu()
-  }
+    setIsMenuOpen((prev) => !prev);
+    toggleMenu && toggleMenu();
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+    searchProperties(event.target.value);
+  };
+
+  const handlePropertyClick = (propertyId: string) => {
+    navigateToProperty(propertyId);
+    setSearchQuery('');
+  };
+
+  const handleContactNavigation = () => {
+    navigate('/contact');
+  };
+
+  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    searchProperties(searchQuery);
+    navigate('/properties');
+  };
 
   return (
-    <header className={`sticky-header ${isScrolled ? 'scrolled' : ''} bg-white shadow-md transition-all duration-300`}>
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center space-x-4">
-          <button onClick={handleToggleMenu} className="text-gray-600 hover:text-gray-900 focus:outline-none">
-            <Menu className={`h-6 w-6 transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : ''}`} />
-          </button>
-          <h1 className="text-2xl font-bold text-primary cursor-pointer" onClick={() => setCurrentPage('home')}>InmoModerna</h1>
-        </div>
+    <header className={`sticky-header ${isScrolled ? 'scrolled' : ''} bg-transparent shadow-md transition-all duration-300`}>
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center relative z-50">
+        <button onClick={handleToggleMenu} className="text-gray-400 hover:text-gray-200 focus:outline-none">
+          {isMenuOpen ? <X className="hamburger-icon h-6 w-6" /> : <Menu className="hamburger-icon h-6 w-6" />}
+        </button>
+
+        <Link to="/" onClick={() => setCurrentPage && setCurrentPage('home')}>
+          <img src="/public/assets/logo-1.webp" alt="Logo InmoModerna" className="h-20 w-auto logo" />
+        </Link>
+
         <nav className="hidden md:flex items-center space-x-6">
-          <button onClick={() => setCurrentPage('home')} className="text-gray-600 hover:text-primary transition-colors duration-300">Inicio</button>
-          <button onClick={() => setCurrentPage('properties')} className="text-gray-600 hover:text-primary transition-colors duration-300">Buscar Propiedades</button>
-          <button onClick={() => setCurrentPage('offices')} className="text-gray-600 hover:text-primary transition-colors duration-300">Oficinas</button>
-          <button onClick={() => setCurrentPage('advisors')} className="text-gray-600 hover:text-primary transition-colors duration-300">Asesores</button>
-          <button onClick={() => setCurrentPage('contact')} className="text-gray-600 hover:text-primary transition-colors duration-300">Contáctanos</button>
-          <button className="bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition duration-300">Ser Asesor</button>
+          {[
+            { name: 'Inicio', to: '/' },
+            { name: 'Lotes', to: '/properties' },
+            { name: 'Oficinas', to: '/offices' },
+            { name: 'Asesores', to: '/advisors' },
+            { name: 'Sobre Nosotros', to: '/about' },
+          ].map((link) => (
+            <Link
+              key={link.name}
+              to={link.to}
+              className="relative group overflow-hidden text-gray-400 hover:text-[#FF6B35] transition-colors duration-500"
+            >
+              <span className="absolute inset-0 bg-[#FF6B35] rounded-full transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-out" />
+              <span className="relative z-10 group-hover:text-black transition-colors duration-500">{link.name}</span>
+            </Link>
+          ))}
         </nav>
+
         <div className="flex items-center space-x-4">
-          <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="text-gray-600 hover:text-primary transition-colors duration-300">
-            <Search className="h-6 w-6" />
-          </button>
-          <button className="text-gray-600 hover:text-primary transition-colors duration-300">
+          <form onSubmit={handleSearchSubmit} className="relative">
+            <input
+              type="text"
+              placeholder="Buscar propiedades..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className="px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF6B35] bg-gray-800 text-white"
+            />
+            <button type="submit" className="absolute right-0 top-0 mt-2 mr-2 bg-[#FF6B35] text-black px-2 py-1 rounded-full hover:bg-[#E34A15] transition duration-300">
+              <Search className="h-5 w-5" />
+            </button>
+          </form>
+
+          <button className="text-gray-400 hover:text-[#FF6B35] transition-colors duration-300">
             <User className="h-6 w-6" />
+          </button>
+
+          <button
+            onClick={handleContactNavigation}
+            className="relative group overflow-hidden inline-flex items-center justify-center w-32 h-12 border-2 border-[#FF6B35] rounded-full transition-all duration-300"
+          >
+            <span className="absolute inset-0 w-full h-full bg-[#FF6B35] rounded-full transform scale-0 origin-bottom group-hover:scale-100 transition-transform duration-500 ease-out" />
+            <span className="relative z-10 text-[#FF6B35] group-hover:text-black transition-colors duration-500">
+              Conectarse
+            </span>
           </button>
         </div>
       </div>
-      {isSearchOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white shadow-md p-4 animate-fade-in">
-          <div className="container mx-auto flex items-center">
-            <input type="text" placeholder="Buscar propiedades..." className="flex-grow px-4 py-2 border rounded-l-full focus:outline-none focus:ring-2 focus:ring-primary" />
-            <button className="bg-primary text-white px-6 py-2 rounded-r-full hover:bg-primary-dark transition duration-300">
-              Buscar
-            </button>
-            <button onClick={() => setIsSearchOpen(false)} className="ml-4 text-gray-600 hover:text-primary transition-colors duration-300">
-              <X className="h-6 w-6" />
-            </button>
-          </div>
+
+      {searchQuery && (
+        <div className="absolute left-0 right-0 top-full bg-white shadow-lg z-50">
+          <ul>
+            {filteredProperties.map((property) => (
+              <li
+                key={property.id}
+                className="p-4 cursor-pointer hover:bg-gray-100"
+                onClick={() => handlePropertyClick(property.id)}
+              >
+                {property.name} - {property.location}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
-      
-      {/* Hamburger Menu */}
-      <div className={`fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <div className={`fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-          <div className="p-5">
-            <button onClick={handleToggleMenu} className="absolute top-5 right-5 text-gray-600 hover:text-gray-900">
-              <X className="h-6 w-6" />
-            </button>
-            <nav className="mt-8">
-              <ul className="space-y-4">
-                <li><button onClick={() => { setCurrentPage('home'); handleToggleMenu(); }} className="flex items-center space-x-2 text-gray-600 hover:text-primary"><Home className="h-5 w-5" /><span>Inicio</span></button></li>
-                <li><button onClick={() => { setCurrentPage('properties'); handleToggleMenu(); }} className="flex items-center space-x-2 text-gray-600 hover:text-primary"><Building className="h-5 w-5" /><span>Propiedades</span></button></li>
-                <li><button onClick={() => { setCurrentPage('offices'); handleToggleMenu(); }} className="flex items-center space-x-2 text-gray-600 hover:text-primary"><Building className="h-5 w-5" /><span>Oficinas</span></button></li>
-                <li><button onClick={() => { setCurrentPage('advisors'); handleToggleMenu(); }} className="flex items-center space-x-2 text-gray-600 hover:text-primary"><User className="h-5 w-5" /><span>Asesores</span></button></li>
-                <li><button onClick={() => { setCurrentPage('about'); handleToggleMenu(); }} className="flex items-center space-x-2 text-gray-600 hover:text-primary"><Info className="h-5 w-5" /><span>Sobre Nosotros</span></button></li>
-                <li><button onClick={() => { setCurrentPage('contact'); handleToggleMenu(); }} className="flex items-center space-x-2 text-gray-600 hover:text-primary"><Phone className="h-5 w-5" /><span>Contacto</span></button></li>
-              </ul>
-            </nav>
-          </div>
+
+      <div className={`hamburger-menu fixed inset-0 bg-black bg-opacity-75 z-40 transform ${isMenuOpen ? 'slide-in' : 'slide-out'}`}>
+        <div className={`fixed inset-y-0 left-0 w-64 bg-black shadow-lg transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <nav className="p-5 space-y-4">
+            <Link to="/" onClick={() => { setCurrentPage && setCurrentPage('home'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Inicio</Link>
+            <Link to="/properties" onClick={() => { setCurrentPage && setCurrentPage('properties'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Lotes</Link>
+            <Link to="/offices" onClick={() => { setCurrentPage && setCurrentPage('offices'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Oficinas</Link>
+            <Link to="/advisors" onClick={() => { setCurrentPage && setCurrentPage('advisors'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Asesores</Link>
+            <Link to="/about" onClick={() => { setCurrentPage && setCurrentPage('about'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Sobre Nosotros</Link>
+          </nav>
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

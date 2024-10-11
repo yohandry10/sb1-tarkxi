@@ -1,23 +1,30 @@
+/* Importar fuentes */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* Estilos Base de Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Variables de colores */
 :root {
-  --primary-color: #3B82F6;
-  --secondary-color: #10B981;
-  --accent-color: #F59E0B;
-  --background-color: #F3F4F6;
-  --text-color: #1F2937;
+  --primary-color: #FF6B35; /* Naranja para botones primarios */
+  --secondary-color: #000000; /* Negro para hover o estados secundarios */
+  --accent-color: #F59E0B; /* Amarillo para resaltar botones o secciones */
+  --background-color: #F3F4F6; /* Fondo general de la página */
+  --text-color: #1F2937; /* Color principal del texto */
+  --navbar-background: rgba(255, 255, 255, 0.9); /* Fondo del navbar cuando hace scroll */
 }
 
+/* Estilos generales */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
+  margin: 0;
 }
 
+/* Clases personalizadas */
 .smooth-scroll {
   scroll-behavior: smooth;
 }
@@ -29,6 +36,7 @@ body {
   background-size: cover;
 }
 
+/* Estilos del header sticky */
 .sticky-header {
   position: sticky;
   top: 0;
@@ -37,10 +45,29 @@ body {
 }
 
 .sticky-header.scrolled {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: var(--navbar-background);
   backdrop-filter: blur(5px);
 }
 
+/* Estilos para el logo */
+.logo {
+  background: transparent;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.logo-container {
+  background-color: #000;
+  padding: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+/* Estilos del modal */
 .modal {
   transition: opacity 0.3s ease-in-out;
 }
@@ -49,10 +76,12 @@ body {
   transition: transform 0.3s ease-in-out;
 }
 
+/* Estilos del drawer (menú lateral) */
 .drawer {
   transition: transform 0.3s ease-in-out;
 }
 
+/* Estilos del acordeón */
 .accordion-content {
   max-height: 0;
   overflow: hidden;
@@ -63,30 +92,218 @@ body {
   max-height: 1000px;
 }
 
+/* Animaciones */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Hamburger Menu Animation */
+/* Animaciones para el menú hamburguesa */
+/* Animaciones para el menú de hamburguesa */
 @keyframes slideIn {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 .slide-in {
   animation: slideIn 0.3s ease-out forwards;
 }
 
+.slide-out {
+  animation: slideOut 0.3s ease-out forwards;
+}
+
+/* Animaciones para el fondo al abrir el menú */
 @keyframes fadeInBackground {
-  from { opacity: 0; }
-  to { opacity: 0.5; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fadeOutBackground {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .fade-in-bg {
   animation: fadeInBackground 0.3s ease-out forwards;
+}
+
+.fade-out-bg {
+  animation: fadeOutBackground 0.3s ease-out forwards;
+}
+
+/* Ajustes para el menú hamburguesa */
+.hamburger-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.bg-transparent.scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* Corrección de superposición */
+.fixed.z-40 {
+  z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+}
+
+.sticky-header {
+  z-index: 50; /* Ajusta la profundidad del header */
+}
+
+/* Ajustes adicionales */
+.hamburger-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 300px; /* Ancho del menú */
+  background-color: #000;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 999; /* Asegura que esté por encima de otros elementos */
+}
+
+.menu-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998; /* Justo por debajo del menú */
+  display: none; /* Oculto inicialmente */
+}
+
+.menu-background.show {
+  display: block; /* Se muestra cuando se activa el menú */
+}
+
+.menu-open {
+  overflow: hidden; /* Evita el desplazamiento de la página cuando el menú está abierto */
+}
+
+
+/* Estilo para el botón "¡CONECTEMOS!" */
+.connect-button {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 12px 24px;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.connect-button:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.05);
+}
+
+/* Mapa de ubicación */
+.location-map {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 50px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera para resaltar el mapa */
+}
+
+.map-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.map-overlay h3 {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.map-overlay p {
+  color: #ddd;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.map-overlay button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.map-overlay button:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.05);
+}
+
+/* Estilos para características */
+.features-item {
+  color: var(--text-color);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.features-item:hover {
+  transform: translateY(-10px);
+  color: var(--primary-color);
+}
+
+/* Estilos para el logo del footer */
+.footer-logo {
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.footer-logo img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
 }

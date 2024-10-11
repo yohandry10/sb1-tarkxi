@@ -10,7 +10,7 @@ const AboutPage: React.FC = () => {
         <div>
           <h2 className="text-3xl font-semibold mb-4">Nuestra Historia</h2>
           <p className="text-gray-600 mb-4">
-            Fundada en 2010, InmoModerna nació con la visión de revolucionar el mercado inmobiliario, combinando la experiencia tradicional con las últimas tecnologías. Desde entonces, hemos ayudado a miles de clientes a encontrar su hogar ideal y a realizar inversiones inmobiliarias exitosas.
+            Fundada en 2010, Mufasa Inmobiliaria nació con la visión de revolucionar el mercado inmobiliario, combinando la experiencia tradicional con las últimas tecnologías. Desde entonces, hemos ayudado a miles de clientes a encontrar su hogar ideal y a realizar inversiones inmobiliarias exitosas.
           </p>
           <p className="text-gray-600">
             Nuestro compromiso con la excelencia y la satisfacción del cliente nos ha convertido en líderes del sector, con una reputación basada en la confianza, la transparencia y los resultados.

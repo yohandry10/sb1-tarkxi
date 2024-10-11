@@ -1,18 +1,47 @@
-import React from 'react'
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+// Configuración del ícono utilizando el ícono predeterminado de Leaflet
+const markerIcon = new L.Icon.Default();
 
 const LocationMap: React.FC = () => {
   return (
-    <div className="relative">
-      <img src="https://images.unsplash.com/photo-1553825250-bd5b6b5a6f3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mapa de ubicación" className="w-full h-96 object-cover rounded-lg" />
-      <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-        <div className="text-center text-white">
-          <h3 className="text-2xl font-bold mb-2">Ubicación Privilegiada</h3>
-          <p className="mb-4">A solo minutos de los mejores restaurantes y tiendas</p>
-          <button className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition duration-300">Ver en Google Maps</button>
-        </div>
+    <div className="location-map">
+      {/* Componente MapContainer de Leaflet */}
+      <MapContainer
+        center={[-12.0357, -76.9510]} // Coordenadas específicas de Ate, Lima, Perú
+        zoom={14} // Zoom más detallado
+        style={{ height: '100%', width: '100%' }}
+        className="rounded-lg shadow-lg"
+      >
+        {/* Capa base usando OpenStreetMap */}
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        />
+        {/* Marcador para la ubicación */}
+        <Marker position={[-12.0357, -76.9510]} icon={markerIcon}>
+          <Popup>
+            Ubicación Privilegiada: Ate, Lima, Perú <br /> Cerca de restaurantes y tiendas.
+          </Popup>
+        </Marker>
+      </MapContainer>
+
+      {/* Superposición de información sobre el mapa */}
+      <div className="map-overlay">
+        <h3 className="font-bold text-3xl">Ubicación Privilegiada</h3>
+        <p>A solo minutos de los mejores restaurantes y tiendas</p>
+        <button
+          onClick={() => window.open('https://www.google.com/maps/@-12.0357,-76.9510,17z', '_blank')}
+          className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition duration-300"
+        >
+          Ver en Google Maps
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LocationMap
+export default LocationMap;

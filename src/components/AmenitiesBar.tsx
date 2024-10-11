@@ -1,30 +1,35 @@
-import React from 'react'
-import { Coffee, Dumbbell, Wifi, Tv, Utensils, Dog } from 'lucide-react'
+import React from 'react';
+import { FaSwimmingPool, FaWifi, FaDumbbell, FaFilm, FaFireAlt, FaDog } from 'react-icons/fa'; // Puedes usar cualquier librería de iconos como react-icons
 
-const AmenitiesBar: React.FC = () => {
-  const amenities = [
-    { icon: <Coffee className="h-6 w-6" />, name: 'Salón Social' },
-    { icon: <Dumbbell className="h-6 w-6" />, name: 'Gimnasio' },
-    { icon: <Wifi className="h-6 w-6" />, name: 'Wi-Fi' },
-    { icon: <Tv className="h-6 w-6" />, name: 'Sala de Cine' },
-    { icon: <Utensils className="h-6 w-6" />, name: 'Área de BBQ' },
-    { icon: <Dog className="h-6 w-6" />, name: 'Pet Shower' },
-  ]
-
+const AmenitiesBox: React.FC = () => {
   return (
-    <div className="bg-brown-800 text-white py-6 rounded-lg mb-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {amenities.map((amenity, index) => (
-            <div key={index} className="flex flex-col items-center text-center cursor-pointer hover:scale-110 transition-transform duration-300">
-              {amenity.icon}
-              <span className="mt-2 text-sm">{amenity.name}</span>
-            </div>
-          ))}
-        </div>
+    <div className="grid grid-cols-3 gap-6 text-center mt-8">
+      <div className="icon-feature flex flex-col items-center">
+        <FaSwimmingPool className="text-6xl mb-2 text-orange-500" /> {/* Cambia aquí el color */}
+        <p>Salón Social</p>
+      </div>
+      <div className="icon-feature flex flex-col items-center">
+        <FaDumbbell className="text-6xl mb-2 text-orange-500" /> {/* Cambia aquí el color */}
+        <p>Gimnasio</p>
+      </div>
+      <div className="icon-feature flex flex-col items-center">
+        <FaWifi className="text-6xl mb-2 text-orange-500" /> {/* Cambia aquí el color */}
+        <p>Wi-Fi</p>
+      </div>
+      <div className="icon-feature flex flex-col items-center">
+        <FaFilm className="text-6xl mb-2 text-orange-500" /> {/* Cambia aquí el color */}
+        <p>Sala de Cine</p>
+      </div>
+      <div className="icon-feature flex flex-col items-center">
+        <FaFireAlt className="text-6xl mb-2 text-orange-500" /> {/* Cambia aquí el color */}
+        <p>Área de BBQ</p>
+      </div>
+      <div className="icon-feature flex flex-col items-center">
+        <FaDog className="text-6xl mb-2 text-orange-500" /> {/* Cambia aquí el color */}
+        <p>Pet Shower</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AmenitiesBar
+export default AmenitiesBox;
