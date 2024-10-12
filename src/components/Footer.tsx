@@ -3,6 +3,9 @@ import { Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
+  const phoneNumber = '+51971218278'; // Número de WhatsApp
+  const message = 'Hola, me gustaría obtener más información sobre sus propiedades.'; // Mensaje predeterminado
+
   return (
     <footer className="bg-black text-white py-12">
       <div className="container mx-auto px-4">
@@ -45,11 +48,16 @@ const Footer: React.FC = () => {
             <p className="text-gray-400 mb-2">Av. Santa Rosa 279, Santa Clara, Distrito de Ate, Lima, Perú.</p>
             <p className="text-gray-400 mb-2">+51971218278</p>
             <p className="text-gray-400 mb-4">mufasainmobiliaria@outlook.com</p>
-            <Link to="/contact">
+            {/* Redirigir al enlace de WhatsApp al hacer clic */}
+            <a
+              href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <button className="bg-[#FF6B35] text-black px-4 py-2 rounded-full hover:bg-[#E34A15] transition duration-300">
                 Contáctanos
               </button>
-            </Link>
+            </a>
           </div>
         </div>
 
