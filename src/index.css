@@ -8,12 +8,12 @@
 
 /* Variables de colores */
 :root {
-  --primary-color: #FF6B35; /* Naranja para botones primarios */
-  --secondary-color: #000000; /* Negro para hover o estados secundarios */
-  --accent-color: #F59E0B; /* Amarillo para resaltar botones o secciones */
-  --background-color: #F3F4F6; /* Fondo general de la página */
-  --text-color: #1F2937; /* Color principal del texto */
-  --navbar-background: rgba(255, 255, 255, 0.9); /* Fondo del navbar cuando hace scroll */
+  --primary-color: #FF6B35;
+  --secondary-color: #000000;
+  --accent-color: #F59E0B;
+  --background-color: #F3F4F6;
+  --text-color: #1F2937;
+  --navbar-background: rgba(255, 255, 255, 0.9);
 }
 
 /* Estilos generales */
@@ -22,6 +22,7 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   margin: 0;
+  overflow-x: hidden;
 }
 
 /* Clases personalizadas */
@@ -94,12 +95,8 @@ body {
 
 /* Animaciones */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .animate-fade-in {
@@ -107,23 +104,14 @@ body {
 }
 
 /* Animaciones para el menú hamburguesa */
-/* Animaciones para el menú de hamburguesa */
 @keyframes slideIn {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
 }
 
 @keyframes slideOut {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
 }
 
 .slide-in {
@@ -136,21 +124,13 @@ body {
 
 /* Animaciones para el fondo al abrir el menú */
 @keyframes fadeInBackground {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.5;
-  }
+  from { opacity: 0; }
+  to { opacity: 0.5; }
 }
 
 @keyframes fadeOutBackground {
-  from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 0;
-  }
+  from { opacity: 0.5; }
+  to { opacity: 0; }
 }
 
 .fade-in-bg {
@@ -173,11 +153,11 @@ body {
 
 /* Corrección de superposición */
 .fixed.z-40 {
-  z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+  z-index: 1000;
 }
 
 .sticky-header {
-  z-index: 50; /* Ajusta la profundidad del header */
+  z-index: 50;
 }
 
 /* Ajustes adicionales */
@@ -186,10 +166,17 @@ body {
   top: 0;
   left: 0;
   height: 100vh;
-  width: 300px; /* Ancho del menú */
+  width: 100%;
+  max-width: 300px;
   background-color: #000;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-  z-index: 999; /* Asegura que esté por encima de otros elementos */
+  z-index: 999;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.hamburger-menu.open {
+  transform: translateX(0);
 }
 
 .menu-background {
@@ -199,18 +186,20 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 998; /* Justo por debajo del menú */
-  display: none; /* Oculto inicialmente */
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
 .menu-background.show {
-  display: block; /* Se muestra cuando se activa el menú */
+  opacity: 1;
+  visibility: visible;
 }
 
 .menu-open {
-  overflow: hidden; /* Evita el desplazamiento de la página cuando el menú está abierto */
+  overflow: hidden;
 }
-
 
 /* Estilo para el botón "¡CONECTEMOS!" */
 .connect-button {
@@ -235,7 +224,7 @@ body {
   border-radius: 15px;
   overflow: hidden;
   margin: 50px 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera para resaltar el mapa */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .map-overlay {
@@ -306,4 +295,116 @@ body {
 
 .footer-logo:hover {
   transform: scale(1.05);
+}
+
+/* Estilos del footer */
+.footer {
+  background-color: var(--background-color);
+  padding: 50px 0;
+  text-align: center;
+}
+
+.footer a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--primary-color);
+}
+
+.footer p {
+  font-size: 14px;
+  color: #6B7280;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer-logo-container {
+  margin-bottom: 30px;
+}
+
+/* Modo oscuro y claro */
+:root {
+  --bg-dark: #1F2937;
+  --text-dark: #D1D5DB;
+  --bg-light: #F3F4F6;
+  --text-light: #1F2937;
+}
+
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+body.light-mode {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+.footer.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.footer.light-mode {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .sticky-header {
+    padding: 0.5rem 1rem;
+  }
+
+  .logo {
+    height: 2.5rem;
+  }
+
+  .hamburger-menu {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .footer {
+    text-align: center;
+  }
+
+  .footer-logo {
+    margin: 0 auto 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sticky-header .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .logo + span {
+    display: none;
+  }
+
+  .search-form {
+    display: none;
+  }
+
+  .connect-button {
+    display: none;
+  }
+
+  .hamburger-menu nav a {
+    padding: 1rem;
+    display: block;
+  }
 }

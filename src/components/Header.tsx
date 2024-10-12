@@ -50,21 +50,20 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
     <header className={`sticky-header ${isScrolled ? 'scrolled' : ''} bg-transparent shadow-md transition-all duration-300`}>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center relative z-50">
         <button onClick={handleToggleMenu} className="text-gray-400 hover:text-gray-200 focus:outline-none">
-          {isMenuOpen ? <X className="hamburger-icon h-6 w-6" /> : <Menu className="hamburger-icon h-6 w-6" />}
+          <Menu className="hamburger-icon h-6 w-6" />
         </button>
 
         <Link to="/" onClick={() => setCurrentPage && setCurrentPage('home')} className="flex items-center space-x-2">
-          <img src="/assets/logo-1.webp" alt="Logo InmoModerna" className="h-20 w-auto logo" />
-          {/* Contenedor para "Mufasa Inmobiliaria" con efecto hover independiente */}
+          <img src="/assets/logo-1.webp" alt="Logo InmoModerna" className="h-16 w-auto logo" />
           <span className="relative group">
-            <span className="text-2xl font-bold text-gray-400 z-10 relative transition-colors duration-300 ease-in-out group-hover:text-black">
+            <span className="text-xl font-bold text-gray-400 z-10 relative transition-colors duration-300 ease-in-out group-hover:text-black">
               Mufasa Inmobiliaria
             </span>
             <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-[#FF6B35] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-in-out" />
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-4">
           {[
             { name: 'Inicio', to: '/' },
             { name: 'Lotes', to: '/properties' },
@@ -103,7 +102,7 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
 
           <button
             onClick={() => navigate('/contact')}
-            className="relative group overflow-hidden inline-flex items-center justify-center w-32 h-12 border-2 border-[#FF6B35] rounded-full transition-all duration-300"
+            className="relative group overflow-hidden inline-flex items-center justify-center w-24 h-10 border-2 border-[#FF6B35] rounded-full transition-all duration-300"
           >
             <span className="absolute inset-0 w-full h-full bg-[#FF6B35] rounded-full transform scale-0 origin-bottom group-hover:scale-100 transition-transform duration-500 ease-out" />
             <span className="relative z-10 text-[#FF6B35] group-hover:text-black transition-colors duration-500">
@@ -129,16 +128,22 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
         </div>
       )}
 
-      <div className={`hamburger-menu fixed inset-0 bg-black bg-opacity-75 z-40 transform ${isMenuOpen ? 'slide-in' : 'slide-out'}`}>
-        <div className={`fixed inset-y-0 left-0 w-64 bg-black shadow-lg transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-          <nav className="p-5 space-y-4">
-            <Link to="/" onClick={() => { setCurrentPage && setCurrentPage('home'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Inicio</Link>
-            <Link to="/properties" onClick={() => { setCurrentPage && setCurrentPage('properties'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Lotes</Link>
-            <Link to="/offices" onClick={() => { setCurrentPage && setCurrentPage('offices'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Oficinas</Link>
-            <Link to="/advisors" onClick={() => { setCurrentPage && setCurrentPage('advisors'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Asesores</Link>
-            <Link to="/about" onClick={() => { setCurrentPage && setCurrentPage('about'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Sobre Nosotros</Link>
-          </nav>
+      {/* Hamburger Menu */}
+      <div className={`fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} onClick={handleToggleMenu}></div>
+      <div className={`fixed inset-y-0 left-0 w-64 bg-black shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="flex justify-between items-center p-4 border-b border-gray-700">
+          <h2 className="text-xl font-bold text-white">Menú</h2>
+          <button onClick={handleToggleMenu} className="text-white hover:text-[#FF6B35] focus:outline-none">
+            <X className="h-6 w-6" />
+          </button>
         </div>
+        <nav className="p-5 space-y-4">
+          <Link to="/" onClick={() => { setCurrentPage && setCurrentPage('home'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Inicio</Link>
+          <Link to="/properties" onClick={() => { setCurrentPage && setCurrentPage('properties'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Lotes</Link>
+          <Link to="/offices" onClick={() => { setCurrentPage && setCurrentPage('offices'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Oficinas</Link>
+          <Link to="/advisors" onClick={() => { setCurrentPage && setCurrentPage('advisors'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Asesores</Link>
+          <Link to="/about" onClick={() => { setCurrentPage && setCurrentPage('about'); handleToggleMenu(); }} className="block text-white hover:text-[#FF6B35]">Sobre Nosotros</Link>
+        </nav>
       </div>
     </header>
   );
