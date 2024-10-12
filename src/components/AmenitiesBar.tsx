@@ -25,7 +25,7 @@ const AmenitiesBar: React.FC = () => {
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <TrendingUp className="h-12 w-12 mx-auto mb-4 text-orange-500" />
             <h3 className="text-xl font-semibold mb-2">¡Precios de locura!</h3>
-            <p className="text-gray-600">Facilidad de pago  y descuentos por traer un amigo para nuestros clientes</p>
+            <p className="text-gray-600">¡Facilidad de pago  y lotes por tan solo 10mil!</p>
           </div>
 
           {/* Proximidad a Vías Principales */}

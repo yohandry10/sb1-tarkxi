@@ -27,7 +27,7 @@ const PropertyDetailsPage: React.FC = () => {
           </Link>
         </div>
 
-        <h2 className="text-2xl font-semibold mb-4 text-center">Propiedades Disponibles</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-center">Lotes Disponibles</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {properties.slice(0, 3).map((prop) => (
             <div key={prop.id} className="bg-white p-6 rounded-lg shadow-md">

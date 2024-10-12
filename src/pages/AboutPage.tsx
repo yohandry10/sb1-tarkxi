@@ -1,73 +1,70 @@
-// src/pages/AboutPage.tsx
 import React from 'react';
-import { Award, Users, Briefcase } from 'lucide-react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
-const AboutPage: React.FC = () => {
+// Crear un icono personalizado para el marcador usando URLs absolutas
+const markerIcon = new L.Icon({
+  iconUrl: '/images/leaflet/marker-icon.png',
+  iconRetinaUrl: '/images/leaflet/marker-icon-2x.png',
+  shadowUrl: '/images/leaflet/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+const AboutPage = () => {
+  // Coordenadas de la ubicación del proyecto
+  const position = [-12.0505115, -76.889238]; 
+
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold text-center mb-12">Sobre Mufasa Inmobliaria</h1>
+    <div className="about-page">
+      <section className="container mx-auto py-16 px-4">
+        <h1 className="text-4xl font-bold text-center mb-8">Sobre Mufasa Inmobiliaria</h1>
+        <div className="text-center mb-12">
+          <p className="text-lg text-gray-700">
+            Somos una empresa emergente en el mercado inmobiliario dedicada al asesoramiento y venta de lotes, ¡con precios de locura!! desde tan sólo 10mil!. No te quedes esperando, avisale a tu pata, no te quedes sin hacer tu inversión, haz grupo y obten tu cupón de descuento por cada cliente, con nuestra promoción "Recomienda a un amigo"   
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
-        <div>
-          <h2 className="text-3xl font-semibold mb-4">Nuestra Historia</h2>
-          <p className="text-gray-600 mb-4">
-            Somos una empresa emergente en el mercado inmobiliario decidida a hacer crecer tus inversiones y ayudarte a construir la casa de tus sueños. Creamos espacios seguros y con visión a futuro, ofreciendo la oportunidad de revalorización de tu patrimonio.
-          </p>
-          <p className="text-gray-600 mb-4">
-            Estamos sedientos de nuevos clientes que deseen invertir y generar patrimonio mediante inversiones con proyección a crecimiento y revalorización. Nos enfocamos en brindar un servicio de calidad y acompañamiento personalizado para cada uno de nuestros clientes.
-          </p>
-          <h2 className="text-3xl font-semibold mb-4">Misión</h2>
-          <p className="text-gray-600 mb-4">
-            Nuestra misión es ofrecer soluciones inmobiliarias que satisfagan las necesidades y expectativas de nuestros clientes, proporcionándoles un servicio excepcional y una experiencia memorable.
-          </p>
-          <h2 className="text-3xl font-semibold mb-4">Visión</h2>
-          <p className="text-gray-600">
-            Ser la empresa inmobiliaria líder en el mercado, reconocida por su excelencia en la calidad de sus servicios, la innovación y la satisfacción de sus clientes.
-          </p>
+        {/* Mapa interactivo con Leaflet */}
+        <div className="w-full flex justify-center mb-12">
+          <MapContainer 
+            center={position} 
+            zoom={15} 
+            style={{ height: "400px", width: "100%", borderRadius: '8px' }}>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            <Marker position={position} icon={markerIcon}>
+              <Popup>
+                Proyecto de Terrenos - La Planicie <br /> 
+                Visítanos en Av. Las Lomas de Garibaldi, Distrito de Ate.
+              </Popup>
+            </Marker>
+          </MapContainer>
         </div>
-        <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
-          alt="Equipo InmoModerna"
-          className="rounded-lg shadow-md"
-        />
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         <div className="text-center">
-          <Award className="h-16 w-16 text-blue-500 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">Excelencia</h3>
-          <p className="text-gray-600">Nos esforzamos por superar las expectativas en cada interacción y transacción.</p>
+          <h2 className="text-3xl font-bold mb-4">¿Cómo Llegar?</h2>
+          <p className="text-lg text-gray-700 mb-4">
+            Nos encontramos ubicados en una zona emergente. Puedes usar el siguiente enlace para llegar facilmente desde donde te encuentras.
+          </p>
+          <a 
+            href="https://maps.google.com/maps?q=-12.0505115%2C-76.889238&z=17&hl=es"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-orange-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-700 transition duration-300"
+          >
+            Ver en Google Maps
+          </a>
         </div>
-        <div className="text-center">
-          <Users className="h-16 w-16 text-blue-500 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">Servicio Personalizado</h3>
-          <p className="text-gray-600">Cada cliente es único, y nuestro enfoque se adapta a sus necesidades específicas.</p>
-        </div>
-        <div className="text-center">
-          <Briefcase className="h-16 w-16 text-blue-500 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">Profesionalismo</h3>
-          <p className="text-gray-600">Nuestro equipo de expertos garantiza un servicio de la más alta calidad en cada paso del proceso.</p>
-        </div>
-      </div>
-
-      <div className="bg-gray-100 p-8 rounded-lg shadow-md">
-        <h2 className="text-3xl font-semibold mb-4 text-center">Nuestro Equipo</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="text-center">
-              <img
-                src={`https://randomuser.me/api/portraits/men/${i + 60}.jpg`}
-                alt={`Miembro del equipo ${i}`}
-                className="w-32 h-32 rounded-full mx-auto mb-4"
-              />
-              <h3 className="text-xl font-semibold mb-2">Nombre Apellido</h3>
-              <p className="text-gray-600">Cargo en la empresa</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      </section>
     </div>
   );
 };
 
 export default AboutPage;
+

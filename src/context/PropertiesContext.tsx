@@ -1,3 +1,5 @@
+// src/context/PropertiesContext.tsx
+
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -36,11 +38,11 @@ export const PropertiesProvider: React.FC<{ children: ReactNode }> = ({ children
   const [properties] = useState<Property[]>([
     {
       id: 'PROP001',
-      name: 'Casa Moderna en el Centro',
-      location: 'Centro, Madrid',
-      price: 350000,
+      name: 'Casa modelo futurista',
+      location: 'Ate, Lima',
+      price: 2700,
       type: 'Casa',
-      image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
+      image: '/assets/product1.jpeg', // Imagen actualizada
       bedrooms: 3,
       bathrooms: 2,
       area: '200',
@@ -48,28 +50,16 @@ export const PropertiesProvider: React.FC<{ children: ReactNode }> = ({ children
     },
     {
       id: 'PROP002',
-      name: 'Apartamento de Lujo con Vista al Mar',
-      location: 'Playa, Barcelona',
-      price: 450000,
+      name: 'Casa modelo futurista en nuestro proyecto',
+      location: 'Ate, Lima',
+      price: 2700,
       type: 'Apartamento',
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
+      image: '/assets/product2.jpeg', // Imagen actualizada
       bedrooms: 2,
       bathrooms: 2,
       area: '150',
       status: 'En Venta'
-    },
-    {
-      id: 'PROP003',
-      name: 'Chalet con Jardín en Zona Residencial',
-      location: 'Pozuelo, Madrid',
-      price: 550000,
-      type: 'Chalet',
-      image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
-      bedrooms: 4,
-      bathrooms: 3,
-      area: '300',
-      status: 'En Venta'
-    },
+    }
   ]);
 
   const [filteredProperties, setFilteredProperties] = useState<Property[]>(properties);

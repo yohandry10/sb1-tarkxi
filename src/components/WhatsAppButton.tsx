@@ -1,7 +1,7 @@
 import React from 'react'
 
 const WhatsAppButton: React.FC = () => {
-  const phoneNumber = '+34123456789' // Replace with your actual WhatsApp Business number
+  const phoneNumber = '+51971218278' // Replace with your actual WhatsApp Business number
   const message = 'Hola, me gustaría obtener más información sobre sus propiedades.'
 
   return (

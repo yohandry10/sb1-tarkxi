@@ -44,8 +44,8 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-gray-300">Contacto</h4>
             <p className="text-gray-400 mb-2">Av. Santa Rosa 279, Santa Clara, Distrito de Ate, Lima, Perú.</p>
-            <p className="text-gray-400 mb-2">+34 123 456 789</p>
-            <p className="text-gray-400 mb-4">info@inmomoderna.com</p>
+            <p className="text-gray-400 mb-2">+51971218278</p>
+            <p className="text-gray-400 mb-4">mufasainmobiliaria@outlook.com</p>
             <Link to="/contact">
               <button className="bg-[#FF6B35] text-black px-4 py-2 rounded-full hover:bg-[#E34A15] transition duration-300">
                 Contáctanos

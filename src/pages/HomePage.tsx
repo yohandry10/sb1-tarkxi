@@ -8,24 +8,23 @@ import AmenitiesBar from '../components/AmenitiesBar';
 import LocationMap from '../components/LocationMap';
 import { Link } from 'react-router-dom';
 
+// Importación de imágenes
+import product1 from '/public/assets/product1.jpeg';
+import product2 from '/public/assets/product2.jpeg';
+
 const HomePage: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
-      image: "https://images.unsplash.com/photo-1568805711781-e4ff7caf7afa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVycmVub3MlMjBwZXJ1fGVufDB8fDB8fHww",
+      image: product1, // Imagen de product1
       title: "Encuentra tu hogar ideal",
       subtitle: "Descubre las mejores propiedades en las ubicaciones más exclusivas"
     },
     {
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+      image: product2, // Imagen de product2
       title: "Inversiones inteligentes",
       subtitle: "Maximiza tu capital con nuestras oportunidades inmobiliarias"
-    },
-    {
-      image:  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-      title: "Asesoría personalizada",
-      subtitle: "Expertos inmobiliarios a tu disposición en cada paso"
     }
   ];
 

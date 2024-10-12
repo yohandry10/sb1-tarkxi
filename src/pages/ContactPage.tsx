@@ -79,15 +79,15 @@ const ContactPage: React.FC = () => {
           <div className="space-y-4">
             <div className="flex items-center">
               <Mail className="h-6 w-6 text-blue-500 mr-2" />
-              <span>info@inmomoderna.com</span>
+              <span>mufasainmobiliaria@outlook.com</span>
             </div>
             <div className="flex items-center">
               <Phone className="h-6 w-6 text-blue-500 mr-2" />
-              <span>+34 123 456 789</span>
+              <span>+51971218278</span>
             </div>
             <div className="flex items-center">
               <MapPin className="h-6 w-6 text-blue-500 mr-2" />
-              <span>Calle Principal 123, 28001 Madrid, España</span>
+              <span>Av. Santa Rosa 279, Santa Clara, Distrito de Ate, Lima, Perú.</span>
             </div>
           </div>
           <div className="mt-8">

@@ -1,4 +1,3 @@
-// src/components/Header.tsx
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Search, User } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -55,7 +54,7 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
         </button>
 
         <Link to="/" onClick={() => setCurrentPage && setCurrentPage('home')} className="flex items-center space-x-2">
-          <img src="/public/assets/logo-1.webp" alt="Logo InmoModerna" className="h-20 w-auto logo" />
+          <img src="/assets/logo-1.webp" alt="Logo InmoModerna" className="h-20 w-auto logo" />
           {/* Contenedor para "Mufasa Inmobiliaria" con efecto hover independiente */}
           <span className="relative group">
             <span className="text-2xl font-bold text-gray-400 z-10 relative transition-colors duration-300 ease-in-out group-hover:text-black">
