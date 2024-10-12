@@ -9,9 +9,8 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Información de la Empresa */}
           <div className="flex flex-col items-center md:items-start">
-            <div className="footer-logo mb-4">
-              <img src="public/assets/logo-1.webp" alt="Logo InmoModerna" />
-            </div>
+            {/* Eliminación de la imagen del logo */}
+            <h2 className="text-2xl font-bold mb-4">Mufasa Inmobiliaria</h2>
             <p className="text-gray-400">Encuentra tu hogar ideal con Mufasa Inmobiliaria.</p>
             <p className="text-gray-400">Tu mejor aliado en el mercado inmobiliario.</p>
           </div>
