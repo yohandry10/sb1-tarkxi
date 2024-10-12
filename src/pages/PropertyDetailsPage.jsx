@@ -1,14 +1,13 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useProperties } from '../context/PropertiesContext';
-import { Home, MapPin, DollarSign } from 'lucide-react';
+import { Home, MapPin, DollarSign, Maximize, Bath } from 'lucide-react';
 
 const PropertyDetailsPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // Obtener el id de la propiedad desde los parámetros de la URL
-  const { properties } = useProperties(); // Obtener las propiedades desde el contexto
-  const property = properties.find((p) => p.id.toString() === id); // Buscar la propiedad por id
+  const { id } = useParams<{ id: string }>();
+  const { getPropertyById } = useProperties();
+  const property = getPropertyById(id || '');
 
-  // Verificar si la propiedad no se encuentra
   if (!property) {
     return (
       <div className="container mx-auto px-4 py-8">
@@ -18,11 +17,11 @@ const PropertyDetailsPage: React.FC = () => {
         </p>
         <div className="text-center mb-8">
           <img
-            src="https://via.placeholder.com/300"
+            src="https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDJ8fGVycm9yfGVufDB8fHx8MTYzMzU4MDU5MA&ixlib=rb-1.2.1&q=80&w=1080"
             alt="Error 404"
             className="w-full max-w-md mx-auto rounded-lg shadow-md mb-8"
           />
-          <Link to="/properties" className="bg-[#FF6B35] text-black px-4 py-2 rounded-full hover:bg-[#E34A15] transition duration-300">
+          <Link to="/properties" className="bg-[#FF6B35] text-white px-4 py-2 rounded-full hover:bg-[#E34A15] transition duration-300">
             Ver Otras Propiedades
           </Link>
         </div>
@@ -34,30 +33,39 @@ const PropertyDetailsPage: React.FC = () => {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">{property.name}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Imagen Principal */}
         <div>
           <img
-            src="https://via.placeholder.com/600"
+            src={property.image}
             alt={property.name}
             className="w-full h-full rounded-lg shadow-md object-cover"
           />
         </div>
 
-        {/* Información de la Propiedad */}
         <div className="flex flex-col justify-between">
           <div>
             <h2 className="text-2xl font-semibold mb-4">{property.name}</h2>
-            <p className="text-gray-600 mb-4">
-              <MapPin className="inline-block h-4 w-4 mr-1" /> {property.location}
+            <p className="text-gray-600 mb-4 flex items-center">
+              <MapPin className="h-4 w-4 mr-2" /> {property.location}
             </p>
-            <p className="text-gray-600 mb-4">
-              <DollarSign className="inline-block h-4 w-4 mr-1" /> {property.price.toLocaleString()} USD
+            <p className="text-gray-600 mb-4 flex items-center">
+              <DollarSign className="h-4 w-4 mr-2" /> {property.price.toLocaleString()} USD
             </p>
-            <p className="text-gray-600">{property.type}</p>
+            <p className="text-gray-600 mb-4 flex items-center">
+              <Home className="h-4 w-4 mr-2" /> {property.type}
+            </p>
+            <p className="text-gray-600 mb-4 flex items-center">
+              <Maximize className="h-4 w-4 mr-2" /> {property.area} m²
+            </p>
+            <p className="text-gray-600 mb-4 flex items-center">
+              <Home className="h-4 w-4 mr-2" /> {property.bedrooms} habitaciones
+            </p>
+            <p className="text-gray-600 mb-4 flex items-center">
+              <Bath className="h-4 w-4 mr-2" /> {property.bathrooms} baños
+            </p>
           </div>
 
           <div className="mt-8">
-            <Link to="/contact" className="bg-[#FF6B35] text-black px-4 py-2 rounded-full hover:bg-[#E34A15] transition duration-300">
+            <Link to="/contact" className="bg-[#FF6B35] text-white px-4 py-2 rounded-full hover:bg-[#E34A15] transition duration-300">
               Contactar
             </Link>
           </div>

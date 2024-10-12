@@ -31,22 +31,20 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
-    searchProperties(event.target.value);
   };
 
   const handlePropertyClick = (propertyId: string) => {
     navigateToProperty(propertyId);
     setSearchQuery('');
-  };
-
-  const handleContactNavigation = () => {
-    navigate('/contact');
+    navigate(`/property/${propertyId}`);
   };
 
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    searchProperties(searchQuery);
-    navigate('/properties');
+    const results = searchProperties(searchQuery);
+    if (results.length > 0) {
+      handlePropertyClick(results[0].id);
+    }
   };
 
   return (
@@ -56,8 +54,15 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
           {isMenuOpen ? <X className="hamburger-icon h-6 w-6" /> : <Menu className="hamburger-icon h-6 w-6" />}
         </button>
 
-        <Link to="/" onClick={() => setCurrentPage && setCurrentPage('home')}>
+        <Link to="/" onClick={() => setCurrentPage && setCurrentPage('home')} className="flex items-center space-x-2">
           <img src="/public/assets/logo-1.webp" alt="Logo InmoModerna" className="h-20 w-auto logo" />
+          {/* Contenedor para "Mufasa Inmobiliaria" con efecto hover independiente */}
+          <span className="relative group">
+            <span className="text-2xl font-bold text-gray-400 z-10 relative transition-colors duration-300 ease-in-out group-hover:text-black">
+              Mufasa Inmobiliaria
+            </span>
+            <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-[#FF6B35] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-in-out" />
+          </span>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-6">
@@ -98,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
           </button>
 
           <button
-            onClick={handleContactNavigation}
+            onClick={() => navigate('/contact')}
             className="relative group overflow-hidden inline-flex items-center justify-center w-32 h-12 border-2 border-[#FF6B35] rounded-full transition-all duration-300"
           >
             <span className="absolute inset-0 w-full h-full bg-[#FF6B35] rounded-full transform scale-0 origin-bottom group-hover:scale-100 transition-transform duration-500 ease-out" />

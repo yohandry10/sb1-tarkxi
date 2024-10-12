@@ -1,4 +1,3 @@
-// src/App.tsx
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -7,7 +6,7 @@ import AboutPage from './pages/AboutPage';
 import OfficesPage from './pages/OfficesPage';
 import ContactPage from './pages/ContactPage';
 import AdvisorsPage from './pages/AdvisorsPage';
-import PropertyDetailsPage from './pages/PropertiesDetailsPage';
+import PropertyDetailsPage from './pages/PropertiesDetailsPage'
 import { PropertiesProvider } from './context/PropertiesContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -17,15 +16,11 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('home');
 
   return (
-    // Router debe envolver todo el contenido de la aplicación
     <Router>
-      {/* Provider de las propiedades envuelto en Router */}
       <PropertiesProvider>
-        {/* Estructura del sitio */}
         <div className="flex flex-col min-h-screen">
           <Header toggleMenu={() => setIsMenuOpen(!isMenuOpen)} setCurrentPage={setCurrentPage} />
           
-          {/* Contenido Principal de las Rutas */}
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<HomePage />} />
@@ -39,7 +34,6 @@ const App: React.FC = () => {
             </Routes>
           </main>
 
-          {/* Pie de página */}
           <Footer />
         </div>
       </PropertiesProvider>

@@ -1,4 +1,3 @@
-// src/context/PropertiesContext.tsx
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +17,7 @@ interface Property {
 interface PropertiesContextProps {
   properties: Property[];
   filteredProperties: Property[];
-  searchProperties: (query: string) => void;
+  searchProperties: (query: string) => Property[];
   navigateToProperty: (id: string) => void;
   getPropertyById: (id: string) => Property | undefined;
 }
@@ -70,7 +69,7 @@ export const PropertiesProvider: React.FC<{ children: ReactNode }> = ({ children
       bathrooms: 3,
       area: '300',
       status: 'En Venta'
-    }
+    },
   ]);
 
   const [filteredProperties, setFilteredProperties] = useState<Property[]>(properties);
@@ -84,6 +83,7 @@ export const PropertiesProvider: React.FC<{ children: ReactNode }> = ({ children
       property.type.toLowerCase().includes(lowerCaseQuery)
     );
     setFilteredProperties(filtered);
+    return filtered;
   };
 
   const navigateToProperty = (id: string) => {

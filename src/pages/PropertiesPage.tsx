@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { Search, Filter, MapPin, Home, Maximize } from 'lucide-react';
-import { useProperties } from '../context/PropertiesContext'; // Importar el contexto de propiedades
+import { useProperties } from '../context/PropertiesContext';
+import { Link } from 'react-router-dom';
 
 const PropertiesPage: React.FC = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const { filteredProperties, navigateToProperty } = useProperties(); // Utilizar las propiedades filtradas y la función de navegación
+  const { filteredProperties, searchProperties } = useProperties();
 
   const toggleFilter = () => setIsFilterOpen(!isFilterOpen);
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    searchProperties(event.target.value);
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -20,6 +25,7 @@ const PropertiesPage: React.FC = () => {
               type="text"
               placeholder="Buscar propiedades..."
               className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={handleSearch}
             />
             <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">
               <Search className="h-5 w-5" />
@@ -37,7 +43,7 @@ const PropertiesPage: React.FC = () => {
         {filteredProperties.map((property) => (
           <div key={property.id} className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="relative">
-              <img src="https://via.placeholder.com/300" alt={property.name} className="w-full h-48 object-cover" />
+              <img src={property.image} alt={property.name} className="w-full h-48 object-cover" />
               <span className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-sm">{property.type}</span>
             </div>
             <div className="p-4">
@@ -48,12 +54,12 @@ const PropertiesPage: React.FC = () => {
               <div className="flex justify-between items-center mb-4">
                 <span className="text-blue-500 font-bold text-xl">${property.price.toLocaleString()}</span>
               </div>
-              <button
-                onClick={() => navigateToProperty(property.id)}
-                className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
+              <Link
+                to={`/property/${property.id}`}
+                className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300 inline-block text-center"
               >
                 Ver Detalles
-              </button>
+              </Link>
             </div>
           </div>
         ))}

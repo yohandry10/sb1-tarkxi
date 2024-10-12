@@ -1,18 +1,15 @@
-// HomePage.tsx
+// src/pages/HomePage.tsx
 import React, { useState, useEffect } from 'react';
-import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Newsletter from '../components/Newsletter';
 import WhatsAppButton from '../components/WhatsAppButton';
 import FeaturedProperties from '../components/FeaturedProperties';
 import AmenitiesBar from '../components/AmenitiesBar';
 import LocationMap from '../components/LocationMap';
-import { useProperties } from '../context/PropertiesContext';
 import { Link } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
-  const { filteredProperties, searchProperties, navigateToProperty } = useProperties();
 
   const slides = [
     {
@@ -47,16 +44,6 @@ const HomePage: React.FC = () => {
     setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length);
   };
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-    searchProperties(event.target.value);
-  };
-
-  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    searchProperties(searchQuery);
-  };
-
   return (
     <div className="relative">
       {/* Hero Section with Carousel */}
@@ -71,18 +58,6 @@ const HomePage: React.FC = () => {
                 <div className="text-center">
                   <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">{slide.title}</h1>
                   <p className="text-xl text-white mb-8">{slide.subtitle}</p>
-                  <form onSubmit={handleSearchSubmit} className="flex justify-center">
-                    <input
-                      type="text"
-                      value={searchQuery}
-                      onChange={handleSearchChange}
-                      placeholder="Buscar por ubicación, tipo de propiedad..."
-                      className="px-4 py-2 w-64 md:w-96 rounded-l-full focus:outline-none"
-                    />
-                    <button type="submit" className="bg-orange-600 text-white px-6 py-2 rounded-r-full hover:bg-orange-700 transition duration-300">
-                      <Search className="h-5 w-5" />
-                    </button>
-                  </form>
                 </div>
               </div>
             </div>
@@ -98,31 +73,6 @@ const HomePage: React.FC = () => {
 
       {/* Featured Properties Section */}
       <FeaturedProperties />
-
-      {/* Mostrar propiedades filtradas */}
-      <section className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">Propiedades Filtradas</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProperties.length > 0 ? (
-              filteredProperties.map((property) => (
-                <div
-                  key={property.id}
-                  className="bg-white p-4 rounded-lg shadow-md cursor-pointer hover:bg-gray-100 transition duration-300"
-                  onClick={() => navigateToProperty(property.id)}
-                >
-                  <h3 className="text-lg font-semibold mb-2">{property.name}</h3>
-                  <p className="text-gray-600">{property.location}</p>
-                  <p className="text-gray-600">${property.price.toLocaleString()}</p>
-                  <p className="text-gray-600">{property.type}</p>
-                </div>
-              ))
-            ) : (
-              <p className="text-center text-gray-600 col-span-3">No se encontraron propiedades con la búsqueda actual.</p>
-            )}
-          </div>
-        </div>
-      </section>
 
       {/* Amenities Bar and Location Map */}
       <section className="py-16 bg-gray-100">
