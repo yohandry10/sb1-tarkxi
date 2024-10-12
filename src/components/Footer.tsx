@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
           {/* Información de la Empresa */}
           <div className="flex flex-col items-center md:items-start">
             <div className="footer-logo mb-4">
-              <img src="/public/assets/logo-1.webp" alt="Logo InmoModerna" />
+              <img src="/public/assets/logo-1webp" alt="Logo InmoModerna" />
             </div>
             <p className="text-gray-400">Encuentra tu hogar ideal con Mufasa Inmobiliaria.</p>
             <p className="text-gray-400">Tu mejor aliado en el mercado inmobiliario.</p>
