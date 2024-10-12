@@ -49,19 +49,20 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
   return (
     <header className={`sticky-header ${isScrolled ? 'scrolled' : ''} bg-transparent shadow-md transition-all duration-300`}>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center relative z-50">
-        <button onClick={handleToggleMenu} className="text-gray-400 hover:text-gray-200 focus:outline-none">
-          <Menu className="hamburger-icon h-6 w-6" />
-        </button>
-
-        <Link to="/" onClick={() => setCurrentPage && setCurrentPage('home')} className="flex items-center space-x-2">
-          <img src="/assets/logo-1.webp" alt="Logo InmoModerna" className="h-16 w-auto logo" />
-          <span className="relative group">
-            <span className="text-xl font-bold text-gray-400 z-10 relative transition-colors duration-300 ease-in-out group-hover:text-black">
-              Mufasa Inmobiliaria
+        <div className="flex items-center">
+          <button onClick={handleToggleMenu} className="text-gray-400 hover:text-gray-200 focus:outline-none mr-4 md:hidden">
+            <Menu className="hamburger-icon h-6 w-6" />
+          </button>
+          <Link to="/" onClick={() => setCurrentPage && setCurrentPage('home')} className="flex items-center space-x-2">
+            <img src="/assets/logo-1.webp" alt="Logo InmoModerna" className="h-10 w-auto logo" />
+            <span className="relative group hidden sm:inline-block">
+              <span className="text-xl font-bold text-gray-400 z-10 relative transition-colors duration-300 ease-in-out group-hover:text-black">
+                Mufasa Inmobiliaria
+              </span>
+              <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-[#FF6B35] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-in-out" />
             </span>
-            <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-[#FF6B35] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-in-out" />
-          </span>
-        </Link>
+          </Link>
+        </div>
 
         <nav className="hidden md:flex items-center space-x-4">
           {[
@@ -83,13 +84,13 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <form onSubmit={handleSearchSubmit} className="relative">
+          <form onSubmit={handleSearchSubmit} className="relative hidden sm:block">
             <input
               type="text"
               placeholder="Buscar propiedades..."
               value={searchQuery}
               onChange={handleSearchChange}
-              className="px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF6B35] bg-gray-800 text-white"
+              className="px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF6B35] bg-gray-800 text-white w-40 md:w-auto"
             />
             <button type="submit" className="absolute right-0 top-0 mt-2 mr-2 bg-[#FF6B35] text-black px-2 py-1 rounded-full hover:bg-[#E34A15] transition duration-300">
               <Search className="h-5 w-5" />
@@ -102,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
 
           <button
             onClick={() => navigate('/contact')}
-            className="relative group overflow-hidden inline-flex items-center justify-center w-24 h-10 border-2 border-[#FF6B35] rounded-full transition-all duration-300"
+            className="relative group overflow-hidden inline-flex items-center justify-center w-24 h-10 border-2 border-[#FF6B35] rounded-full transition-all duration-300 hidden sm:inline-flex"
           >
             <span className="absolute inset-0 w-full h-full bg-[#FF6B35] rounded-full transform scale-0 origin-bottom group-hover:scale-100 transition-transform duration-500 ease-out" />
             <span className="relative z-10 text-[#FF6B35] group-hover:text-black transition-colors duration-500">
