@@ -1,5 +1,6 @@
 import React from 'react';
-import { Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
+import { Facebook, Instagram } from 'lucide-react';
+import { SiTiktok } from 'react-icons/si'; // Importamos el ícono de TikTok
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -12,7 +13,6 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Información de la Empresa */}
           <div className="flex flex-col items-center md:items-start">
-            {/* Eliminación de la imagen del logo */}
             <h2 className="text-2xl font-bold mb-4">Mufasa Inmobiliaria</h2>
             <p className="text-gray-400">Encuentra tu hogar ideal con Mufasa Inmobiliaria.</p>
             <p className="text-gray-400">Tu mejor aliado en el mercado inmobiliario.</p>
@@ -63,22 +63,42 @@ const Footer: React.FC = () => {
 
         {/* Redes Sociales */}
         <div className="mt-8 flex justify-center space-x-8 mb-4">
-          {[
-            { component: <Facebook />, href: "#" },
-            { component: <Twitter />, href: "#" },
-            { component: <Instagram />, href: "#" },
-            { component: <Linkedin />, href: "#" },
-            { component: <Youtube />, href: "#" }
-          ].map((icon, index) => (
-            <a href={icon.href} key={index} className="relative group overflow-hidden">
-              <span className="flex items-center justify-center w-12 h-12 border border-gray-500 rounded-full transition-transform duration-500 ease-out relative overflow-hidden group-hover:bg-[#FF6B35] group-hover:animate-fill">
-                <span className="absolute inset-0 bg-[#FF6B35] rounded-full transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-out" />
-                {React.cloneElement(icon.component, {
-                  className: 'relative text-gray-500 group-hover:text-black transition-colors duration-500 ease-out'
-                })}
-              </span>
-            </a>
-          ))}
+          {/* Facebook */}
+          <a
+            href="https://www.facebook.com/profile.php?id=61566758507598"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative group overflow-hidden"
+          >
+            <span className="flex items-center justify-center w-12 h-12 border border-gray-500 rounded-full transition-transform duration-500 ease-out relative overflow-hidden group-hover:bg-[#FF6B35] group-hover:animate-fill">
+              <span className="absolute inset-0 bg-[#FF6B35] rounded-full transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-out" />
+              <Facebook className="relative text-gray-500 group-hover:text-black transition-colors duration-500 ease-out" />
+            </span>
+          </a>
+          {/* Instagram */}
+          <a
+            href="https://www.instagram.com/mufasainmobiliaria/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative group overflow-hidden"
+          >
+            <span className="flex items-center justify-center w-12 h-12 border border-gray-500 rounded-full transition-transform duration-500 ease-out relative overflow-hidden group-hover:bg-[#FF6B35] group-hover:animate-fill">
+              <span className="absolute inset-0 bg-[#FF6B35] rounded-full transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-out" />
+              <Instagram className="relative text-gray-500 group-hover:text-black transition-colors duration-500 ease-out" />
+            </span>
+          </a>
+          {/* TikTok */}
+          <a
+            href="https://www.tiktok.com/@mufasainmobiliaria?lang=es"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative group overflow-hidden"
+          >
+            <span className="flex items-center justify-center w-12 h-12 border border-gray-500 rounded-full transition-transform duration-500 ease-out relative overflow-hidden group-hover:bg-[#FF6B35] group-hover:animate-fill">
+              <span className="absolute inset-0 bg-[#FF6B35] rounded-full transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-out" />
+              <SiTiktok className="relative text-gray-500 group-hover:text-black transition-colors duration-500 ease-out" />
+            </span>
+          </a>
         </div>
 
         {/* Información adicional */}

@@ -1,4 +1,3 @@
-// src/pages/HomePage.tsx
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Newsletter from '../components/Newsletter';
@@ -6,7 +5,6 @@ import WhatsAppButton from '../components/WhatsAppButton';
 import FeaturedProperties from '../components/FeaturedProperties';
 import AmenitiesBar from '../components/AmenitiesBar';
 import LocationMap from '../components/LocationMap';
-import { Link } from 'react-router-dom';
 
 // Importación de imágenes
 import product1 from '/public/assets/product1.jpeg';
@@ -18,14 +16,14 @@ const HomePage: React.FC = () => {
   const slides = [
     {
       image: product1, // Imagen de product1
-      title: "Encuentra tu hogar ideal",
-      subtitle: "Descubre las mejores propiedades en las ubicaciones más exclusivas"
+      title: 'Encuentra tu hogar ideal',
+      subtitle: 'Descubre las mejores propiedades en las ubicaciones más exclusivas',
     },
     {
       image: product2, // Imagen de product2
-      title: "Inversiones inteligentes",
-      subtitle: "Maximiza tu capital con nuestras oportunidades inmobiliarias"
-    }
+      title: 'Inversiones inteligentes',
+      subtitle: 'Maximiza tu capital con nuestras oportunidades inmobiliarias',
+    },
   ];
 
   useEffect(() => {
@@ -50,9 +48,14 @@ const HomePage: React.FC = () => {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
           >
-            <div className="relative h-full bg-cover bg-center bg-fixed" style={{ backgroundImage: `url('${slide.image}')` }}>
+            <div
+              className="relative h-full bg-cover bg-center bg-fixed"
+              style={{ backgroundImage: `url('${slide.image}')` }}
+            >
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                 <div className="text-center">
                   <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">{slide.title}</h1>
@@ -62,10 +65,16 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         ))}
-        <button onClick={prevSlide} className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all duration-300">
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all duration-300"
+        >
           <ChevronLeft className="h-6 w-6 text-gray-800" />
         </button>
-        <button onClick={nextSlide} className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all duration-300">
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all duration-300"
+        >
           <ChevronRight className="h-6 w-6 text-gray-800" />
         </button>
       </div>
