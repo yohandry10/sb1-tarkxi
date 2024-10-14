@@ -17,12 +17,12 @@ const HomePage: React.FC = () => {
     {
       image: product1, // Imagen de product1
       title: 'Encuentra tu hogar ideal',
-      subtitle: 'Descubre las mejores propiedades en las ubicaciones más exclusivas',
+      subtitle: 'Descubre las mejores ofertas para tu lote soñado',
     },
     {
       image: product2, // Imagen de product2
       title: 'Inversiones inteligentes',
-      subtitle: 'Maximiza tu capital con nuestras oportunidades inmobiliarias',
+      subtitle: '¡lotes por tan sólo 10 mil soles!! ',
     },
   ];
 
