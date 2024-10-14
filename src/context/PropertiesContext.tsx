@@ -67,8 +67,8 @@ export const PropertiesProvider: React.FC<{ children: ReactNode }> = ({ children
   const [lotesProperties] = useState<Property[]>([
     {
       id: 'LOTE001',
-      name: 'Lote 1',
-      location: 'Ate, Lima',
+      name: 'Lote presentación 1',
+      location: 'Ate, Santa Clara',
       price: 15000,
       type: 'Lote',
       image: '/assets/lot1.jpeg',
@@ -79,8 +79,8 @@ export const PropertiesProvider: React.FC<{ children: ReactNode }> = ({ children
     },
     {
       id: 'LOTE002',
-      name: 'Lote número 2',
-      location: 'Santa Clara, Lima',
+      name: 'Lotes presentación 2',
+      location: 'Ate, Santa Clara',
       price: 16000,
       type: 'Lote',
       image: '/assets/lote2.jpeg',
@@ -91,8 +91,8 @@ export const PropertiesProvider: React.FC<{ children: ReactNode }> = ({ children
     },
     {
       id: 'LOTE003',
-      name: 'Lote número 3',
-      location: 'San Juan, Lima',
+      name: 'Lotes presentación 3',
+      location: 'Ate, Santa Clara',
       price: 18000,
       type: 'Lote',
       image: '/assets/lote3.jpeg',
