@@ -24,7 +24,7 @@ const AboutPage = () => {
         <h1 className="text-4xl font-bold text-center mb-8">Sobre Mufasa Inmobiliaria</h1>
         <div className="text-center mb-12">
           <p className="text-lg text-gray-700">
-            Somos una empresa emergente en el mercado inmobiliario dedicada al asesoramiento y venta de lotes, ¡con precios de locura!! desde tan sólo 10mil!. No te quedes esperando, avisale a tu pata, no te quedes sin hacer tu inversión, haz grupo y obten tu cupón de descuento por cada cliente, con nuestra promoción "Recomienda a un amigo"   
+            Somos una empresa emergente en el mercado inmobiliario dedicada al asesoramiento y venta de lotes, ¡con precios de locura! No te quedes esperando, avisale a tu pata, no te quedes sin hacer tu inversión, haz grupo y obten tu cupón de descuento por cada cliente, con nuestra promoción "Recomienda a un amigo"   
           </p>
         </div>
 
