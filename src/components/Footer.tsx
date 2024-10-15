@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold mb-4 text-gray-300">Contacto</h4>
             <p className="text-gray-400 mb-2">Av. Santa Rosa 279, Santa Clara, Distrito de Ate, Lima, Perú.</p>
             <p className="text-gray-400 mb-2">+51971218278</p>
-            <p className="text-gray-400 mb-4">mufasainmobiliaria@outlook.com</p>
+            <p className="text-gray-400 mb-4">mufasainmobiliaria@gmail.com</p>
             {/* Redirigir al enlace de WhatsApp al hacer clic */}
             <a
               href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
