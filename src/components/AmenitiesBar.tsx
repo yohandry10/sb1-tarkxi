@@ -11,7 +11,7 @@ const AmenitiesBar: React.FC = () => {
           {/* Oportunidad de Inversión */}
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <DollarSign className="h-12 w-12 mx-auto mb-4 text-green-500" />
-            <h3 className="text-xl font-semibold mb-2">Oportunidad de Inversión a largo</h3>
+            <h3 className="text-xl font-semibold mb-2">Oportunidad de Inversión a largo plazo</h3>
             <p className="text-gray-600">Incremento del valor del terreno con el tiempo.</p>
           </div>
 
@@ -19,7 +19,7 @@ const AmenitiesBar: React.FC = () => {
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <Home className="h-12 w-12 mx-auto mb-4 text-blue-500" />
             <h3 className="text-xl font-semibold mb-2">Desarrollo Residencial</h3>
-            <p className="text-gray-600">Zonas planeadas para urbanización y viviendas.</p>
+            <p className="text-gray-600">Zonas con gran potencial de desarrollo.</p>
           </div>
 
           {/* ¡Precios de Locura! */}
@@ -33,7 +33,7 @@ const AmenitiesBar: React.FC = () => {
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <MapPin className="h-12 w-12 mx-auto mb-4 text-red-500" />
             <h3 className="text-xl font-semibold mb-2">Asesoramiento Personalizado</h3>
-            <p className="text-gray-600">Nuestros asesores te ayudarán a tomar la mejor decisión.</p>
+            <p className="text-gray-600"> Contamos con un equipo de asesores listos para guiarte en cada paso.</p>
           </div>
 
           {/* Potencial Comercial */}

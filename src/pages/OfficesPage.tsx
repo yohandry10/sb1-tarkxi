@@ -21,8 +21,8 @@ const OfficesPage: React.FC = () => {
         Nuestras Oficinas
       </h1>
       <p className="text-center text-lg text-gray-700 mb-12">
-        En Mufasa Inmobiliaria, estamos aquí para ayudarte a encontrar la mejor solución inmobiliaria. 
-        Nuestras oficinas están ubicadas en Ate, Lima, Perú, y contamos con un equipo de asesores listos para guiarte en cada paso.
+        En Mufasa Inmobiliaria, estamos para ayudarte a encontrar la mejor solución inmobiliaria. 
+        Nuestras oficinas están ubicadas en la avenida Santa Rosa 279, Santa Clara, Ate, Lima, Perú y contamos con un equipo de asesores listos para guiarte en cada paso.
       </p>
 
       {/* Mapa de Ubicación */}
