@@ -14,13 +14,14 @@ interface Property {
   bathrooms: number;
   area: string;
   status: string;
+  features?: string[]; // Añadido
 }
 
 interface PropertiesContextProps {
   featuredProperties: Property[];
   lotesProperties: Property[];
   filteredProperties: Property[];
-  allProperties: Property[]; // Añadido
+  allProperties: Property[];
   searchProperties: (query: string) => Property[];
   navigateToProperty: (id: string) => void;
   getPropertyById: (id: string) => Property | undefined;
@@ -48,7 +49,8 @@ export const PropertiesProvider: React.FC<{ children: ReactNode }> = ({ children
       bedrooms: 3,
       bathrooms: 2,
       area: '200',
-      status: 'En Venta'
+      status: 'En Venta',
+      features: ['Parques', 'Colegios', 'Mercados', 'Galerías', 'Cancha de Fútbol', 'Club house'], // Añadido
     },
     {
       id: 'PROP002',
@@ -60,7 +62,8 @@ export const PropertiesProvider: React.FC<{ children: ReactNode }> = ({ children
       bedrooms: 2,
       bathrooms: 2,
       area: '150',
-      status: 'En Venta'
+      status: 'En Venta',
+      features: ['Parques', 'Colegios', 'Mercados', 'Galerías', 'Cancha de Fútbol', 'Club house'], // Añadido
     }
   ]);
 
@@ -134,7 +137,7 @@ export const PropertiesProvider: React.FC<{ children: ReactNode }> = ({ children
         featuredProperties,
         lotesProperties,
         filteredProperties,
-        allProperties, // Añadido
+        allProperties,
         searchProperties,
         navigateToProperty,
         getPropertyById

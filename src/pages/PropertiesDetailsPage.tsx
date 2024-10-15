@@ -3,7 +3,7 @@
 import React, { useLayoutEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useProperties } from '../context/PropertiesContext';
-import { Home, MapPin, DollarSign, Maximize, Bath } from 'lucide-react';
+import { MapPin, DollarSign } from 'lucide-react';
 
 const PropertyDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -64,22 +64,18 @@ const PropertyDetailsPage: React.FC = () => {
                 <DollarSign className="h-4 w-4 mr-2" /> S/ {property.price.toLocaleString()} Soles
               </p>
             )}
-            <p className="text-gray-600 mb-4 flex items-center">
-              <Home className="h-4 w-4 mr-2" /> {property.type}
-            </p>
-            <p className="text-gray-600 mb-4 flex items-center">
-              <Maximize className="h-4 w-4 mr-2" /> {property.area} m²
-            </p>
-            {property.bedrooms > 0 && (
-              <p className="text-gray-600 mb-4 flex items-center">
-                <Home className="h-4 w-4 mr-2" /> {property.bedrooms} habitaciones
-              </p>
+            {/* Mostrar las características adicionales si existen */}
+            {property.features && (
+              <div className="mb-4">
+                <h3 className="text-lg font-semibold mb-2">Características:</h3>
+                <ul className="list-disc list-inside text-gray-600">
+                  {property.features.map((feature, index) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
             )}
-            {property.bathrooms > 0 && (
-              <p className="text-gray-600 mb-4 flex items-center">
-                <Bath className="h-4 w-4 mr-2" /> {property.bathrooms} baños
-              </p>
-            )}
+            {/* Se eliminaron las secciones de habitaciones, baños y área */}
           </div>
 
           <div className="mt-8">
