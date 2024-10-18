@@ -52,8 +52,8 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
     <header className={`sticky-header ${isScrolled ? 'scrolled' : ''} transition-all duration-300`}>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center relative z-50">
         <div className="flex items-center">
-          {/* El botón del menú de hamburguesa visible en todas las pantallas */}
-          <button onClick={handleToggleMenu} className="text-gray-400 hover:text-gray-200 focus:outline-none mr-4">
+          {/* El botón del menú de hamburguesa visible solo en móviles */}
+          <button onClick={handleToggleMenu} className="text-gray-400 hover:text-gray-200 focus:outline-none mr-4 md:hidden">
             <Menu className="hamburger-icon h-6 w-6" />
           </button>
 
@@ -106,13 +106,13 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
             </button>
           </form>
 
-          <button className="text-gray-400 hover:text-[#FF6B35] transition-colors duration-300">
+          <button className="text-gray-400 hover:text-[#FF6B35] transition-colors duration-300 hidden md:block">
             <User className="h-6 w-6" />
           </button>
 
           <button
             onClick={() => navigate('/contact')}
-            className="relative group overflow-hidden inline-flex items-center justify-center w-24 h-10 border-2 border-[#FF6B35] rounded-full transition-all duration-300 hidden sm:inline-flex"
+            className="relative group overflow-hidden inline-flex items-center justify-center w-24 h-10 border-2 border-[#FF6B35] rounded-full transition-all duration-300"
           >
             <span className="absolute inset-0 w-full h-full bg-[#FF6B35] rounded-full transform scale-0 origin-bottom group-hover:scale-100 transition-transform duration-500 ease-out" />
             <span className="relative z-10 text-[#FF6B35] group-hover:text-black transition-colors duration-500">
@@ -209,6 +209,17 @@ const Header: React.FC<HeaderProps> = ({ toggleMenu, setCurrentPage }) => {
             className="block hover:text-[#FF6B35]"
           >
             Sobre Nosotros
+          </Link>
+          {/* Agregar "Conectarse" al menú lateral */}
+          <Link
+            to="/contact"
+            onClick={() => {
+              setCurrentPage && setCurrentPage('contact');
+              handleToggleMenu();
+            }}
+            className="block hover:text-[#FF6B35]"
+          >
+            Conectarse
           </Link>
         </nav>
       </div>
