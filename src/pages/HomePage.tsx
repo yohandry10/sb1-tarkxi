@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
     {
       image: product2, // Imagen de product2
       title: 'Inversiones inteligentes',
-      subtitle: '¡lotes por tan sólo 10 mil soles!! ',
+      subtitle: '¡lotes por tan sólo 16 mil soles!! ',
     },
   ];
 
